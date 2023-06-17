@@ -95,7 +95,7 @@ const select = {
       thisProduct.initOrderForm();
       thisProduct.processOrder();
 
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
 
     renderInMenu(){
@@ -132,7 +132,7 @@ const select = {
       /* prevent default action for event */
       event.preventDefault();
       /* find active product (product that has active class) */
-      const activeProduct = document.querySelector(select.all.menuProductActive);
+      const activeProduct = document.querySelector(select.all.menuProductsActive); /* <-- 's' mi uciekło i dlatego :D */
       /* if there is active product and it's not thisProduct.element, remove class active from it */
       if (activeProduct !== null && activeProduct !== thisProduct.element){
         activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
@@ -144,7 +144,7 @@ const select = {
 
     initOrderForm(){
       const thisProduct = this;
-      console.log(this.initOrderForm);
+      //console.log(this.initOrderForm);
 
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
@@ -165,10 +165,10 @@ const select = {
     }
     processOrder(){
       const thisProduct = this;
-      console.log(this.processOrder);
+      //console.log(this.processOrder);
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -177,13 +177,13 @@ const select = {
       for(let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
           if(formData[paramId] && formData[paramId].includes(optionId)) {
             if(!option.default) {
               price += option.price;
