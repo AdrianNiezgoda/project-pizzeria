@@ -219,11 +219,19 @@ const select = {
       const thisWidget = this;
 
       const newValue = parseInt(value);
+      const minValue = settings.amountWidget.defaultMin;
+      const maxValue = settings.amountWidget.defaultMax;
 
       /* TODO: Add validation */
         
       if(thisWidget.value !== newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
+      }
+      if(thisWidget.value < minValue){
+        thisWidget.value = minValue - 1;
+      }
+      if(thisWidget.value > maxValue){
+        thisWidget.value = maxValue + 1;
       }
       thisWidget.input.value = thisWidget.value;
     }
