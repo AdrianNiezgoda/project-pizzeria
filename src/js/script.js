@@ -380,6 +380,10 @@ const select = {
         thisCart.update();
       });
 
+      thisCart.dom.productList.addEventListener('remove', function(event){
+        thisCart.remove(event.detail.cartProduct);
+      });
+
     }
 
     add(menuProduct){
@@ -412,7 +416,11 @@ const select = {
       if (totalNumber != 0){
         thisCart.totalPrice = subtotalPrice + deliveryFee;
         thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      } else {
+        thisCart.totalPrice = 0;
+        thisCart.dom.deliveryFee.innerHTML = 0;
       }
+      
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
 
@@ -421,6 +429,17 @@ const select = {
         price.innerHTML = thisCart.totalPrice;
       }
 
+    }
+
+    remove(event){
+      const thisCart = this;
+
+      event.dom.wrapper.remove();
+
+      const productsRemove = thisCart.products.indexOf(event);
+      thisCart.products.splice(productsRemove, 1);
+
+      thisCart.update();
     }
 
   }
