@@ -467,10 +467,10 @@ const select = {
         totalPrice: thisCart.totalPrice,
         subtotalPrice: thisCart.subtotalPrice,
         totalNumber: thisCart.totalNumber,
-        deliveryFee: thisCart.dom.deliveryFee,
+        deliveryFee: settings.cart.defaultDeliveryFee,
         products: [],
       }
-      console.log(payload);
+      //console.log(payload);
 
       for(let prod of thisCart.products) {
         payload.products.push(prod.getData());
